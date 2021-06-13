@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Planets fact site</title>
+</head>
+<body>
+  Neptune
+
+  <div class="container">
+
+    <div class="header">
+      <div class="headerleft"><h2>THE PLANETS</h2></div>
+      <div class="headerright">
+        <button onclick="changeplanet(this.value)" class="nav-items" value="0" href="murcury.html">MERCURY</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="1" href="venus.html">VENUS</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="2" href="erth.html">EARTH</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="3" href="mars.html">MARS</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="4" href="jupiter.html">JUPITER</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="5" href="saturn.html">SATURN</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="6" href="uranus.html">URANUS</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="7" href="neptune.html">NEPTUNE</button>
+      </div>
+    </div>
+    
+
+     <div class="description">
+         <div class="img_container"><img id="planet_img" src="assets/geology-neptune.png" alt=""></div>
+
+         <div class="geo">
+           <div class="geo_info">
+             <h1 id="planet_name"></h1>
+             <p></p>
+           
+             <p> Source : <a  id="wiki" href="https://en.wikipedia.org/wiki/Neptune">Wikipedia</a></p>
+           </div>
+
+           <div class="overview">
+             <div><p>01 Overview</p></div>
+             <div>02 Internal Structure</div>
+             <div>03 Surface Geology</div>
+           </div>
+
+         </div>
+
+      </div>
+
+      <div class="footer">
+        <div><p>Rotation Time</p> <h1 id="rotation">0.99 DAYS</h1></div>
+        <div><p>REVOLUTION TIME</p> <h1 id="revolution">365.26 DAYS</h1></div>
+        <div><p>RADIUS</p> <h1 id="radius">6,371 KM</h1></div>
+        <div><p>AVERAGE TEMP.</p> <h1 id="temp">16°c</h1></div>
+      </div>
+
+  </div>
+
+  <script>
+    let id = 0;
+    let planet = document.getElementById("'planet_img");
+    let title = document.getElementById('planet__name');
+    let wiki = document.getElementById('wiki');
+    fetch("data.json")
+    .then(promise => promise.json())
+    // .then(console.log);
+    .then((json) =>{
+      planet.src=json[id].images.planet;
+      title.innerText = json[id].name;
+      wiki.href = json[id].overview.source;
+    });
+
+    function changeplanet(e){
+      id = e;
+      fetch("data.json")
+      .then(promise => promise.json())
+      .then((json) => {
+        planet.src = json[id].images.planet;
+        tittle.innerText = json[id].name;
+        wiki.href = json[id].overview.source;
+      })
+    }
+
+  </script>
+  <!-- Overview Content Start -->
+
+ 
+
+  <!-- URL: https://en.wikipedia.org/wiki/Neptune -->
+
+  <!-- Overview Content End -->
+
+  <!-- Internal Structure Content Start -->
+
+  Neptune's internal structure resembles that of Uranus. Its atmosphere forms about 5% 
+  to 10% of its mass and extends perhaps 10% to 20% of the way towards the core. 
+  Increasing concentrations of methane, ammonia and water are found in the lower regions.
+
+  Source : Wikipedia <!-- URL: https://en.wikipedia.org/wiki/Neptune#Internal_structure -->
+
+  <!-- Internal Structure Content End -->
+
+  <!-- Surface Geology Content Start -->
+
+  Neptune's atmosphere is 80% hydrogen and 19% helium. A trace amount of methane is also 
+  present. Prominent absorption bands of methane exist at wavelengths above 600 nm, in 
+  the red and infrared portion of the spectrum.
+
+  Source : Wikipedia <!-- URL: https://en.wikipedia.org/wiki/Neptune#Atmosphere -->
+
+  <!-- Surface Geology Content End -->
+
+  01 Overview
+  02 Internal Structure
+  03 Surface Geology
+
+  Rotation Time
+  16.08 Hours
+
+  Revolution Time
+  164.79 Years
+
+  Radius
+  24,622 KM
+
+  Average Temp.
+  -201°c
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Planets fact site</title>
+</head>
+<body>
+  Jupiter
+
+  <div class="container">
+
+    <div class="header">
+      <div class="headerleft"><h2>THE PLANETS</h2></div>
+      <div class="headerright">
+        <button onclick="changeplanet(this.value)" class="nav-items" value="0" href="murcury.html">MERCURY</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="1" href="venus.html">VENUS</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="2" href="erth.html">EARTH</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="3" href="mars.html">MARS</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="4" href="jupiter.html">JUPITER</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="5" href="saturn.html">SATURN</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="6" href="uranus.html">URANUS</button>
+        <button onclick="changeplanet(this.value)" class="nav-items" value="7" href="neptune.html">NEPTUNE</button>
+      </div>
+    </div>
+    
+
+     <div class="description">
+         <div class="img_container"><img id="planet_img" src="assets/geology-jupiter.png" alt=""></div>
+
+         <div class="geo">
+           <div class="geo_info">
+             <h1>EARTH</h1>
+             <p>Third planet from the Sun and the only known planet to harbor life. 
+              About 29.2% of Earth's surface is land with remaining 70.8% is 
+              covered with water. Earth's distance from the Sun, physical properties 
+              and geological history have allowed life to evolve and thrive.</p>
+           
+             <p> Source : <a href="https://en.wikipedia.org/wiki/Jupiter">Wikipedia</a></p>
+           </div>
+
+           <div class="overview">
+             <div><p>01 Overview</p></div>
+             <div>02 Internal Structure</div>
+             <div>03 Surface Geology</div>
+           </div>
+
+         </div>
+
+      </div>
+
+      <div class="footer">
+        <div><p>Rotation Time</p> <h1 id="rotation">0.99 DAYS</h1></div>
+        <div><p>REVOLUTION TIME</p> <h1 id="revolution">365.26 DAYS</h1></div>
+        <div><p>RADIUS</p> <h1 id="radius">6,371 KM</h1></div>
+        <div><p>AVERAGE TEMP.</p> <h1 id="temp">16°c</h1></div>
+      </div>
+
+  </div>
+
+  <script>
+    let id = 0;
+    let planet = document.getElementById("planet_img");
+    let title = document.getElementById('planet_name');
+    let wiki = document.getElementById('wiki');
+    fetch("data.json")
+    .then(promise => promise.json())
+    // .then(console.log);
+    .then((json) =>{
+      planet.src=json[id].images.planet;
+      title.innerText = json[id].name;
+      wiki.href = json[id].overview.source;
+    });
+
+    function changeplanet(e){
+      id = e;
+      fetch("data.json")
+      .then(promise => promise.json())
+      .then((json) => {
+        planet.src = json[id].images.planet;
+        tittle.innerText = json[id].name;
+        wiki.href = json[id].overview.source;
+      })
+    }
+
+  </script>
+  <!-- Overview Content Start -->
+
+  Jupiter is the fifth planet from the Sun and the largest in the Solar System. 
+  It is a gas giant with a mass two and a half times that of all the other 
+  planets in the Solar System combined, but less than one-thousandth the mass 
+  of the Sun.
+
+  Source : Wikipedia <!-- URL: https://en.wikipedia.org/wiki/Jupiter -->
+
+  <!-- Overview Content End -->
+
+  <!-- Internal Structure Content Start -->
+
+  When the Juno arrived in 2016, it found that Jupiter has a very diffuse core 
+  that mixes into its mantle. A possible cause is an impact from a planet of 
+  about ten Earth masses a few million years after Jupiter's formation, which 
+  would have disrupted an originally solid Jovian core.
+
+  Source : Wikipedia <!-- URL: https://en.wikipedia.org/wiki/Jupiter#Internal_structure -->
+
+  <!-- Internal Structure Content End -->
+
+  <!-- Surface Geology Content Start -->
+
+  The best known feature of Jupiter is the Great Red Spot, a persistent 
+  anticyclonic storm located 22° south of the equator. It is known to have 
+  existed since at least 1831, and possibly since 1665.
+
+  Source : Wikipedia <!-- URL: https://en.wikipedia.org/wiki/Jupiter#Great_Red_Spot_and_other_vortices -->
+
+  <!-- Surface Geology Content End -->
+
+  01 Overview
+  02 Internal Structure
+  03 Surface Geology
+
+  Rotation Time
+  9.93 Hours
+
+  Revolution Time
+  11.86 Years
+
+  Radius
+  69,911 KM
+
+  Average Temp.
+  -108°c
+</body>
+</html>
