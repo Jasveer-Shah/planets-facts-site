@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
   
   <title>Frontend Mentor | Planets fact site</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -14,8 +15,8 @@
   <div class="container">
 
     <div class="header">
-      <div class="headerleft"><h2>THE PLANETS</h2></div>
-      <div  id="button" class="headerright">
+      <h2>THE PLANETS</h2>
+      <div  id="button" class="nav-items">
         <button onclick="changeplanet(this.value)" class="nav-items btn active" value="0" href="murcury.html">MERCURY</button>
         <button onclick="changeplanet(this.value)" class="nav-items btn" value="1" href="venus.html">VENUS</button>
         <button onclick="changeplanet(this.value)" class="nav-items btn" value="2" href="erth.html">EARTH</button>
@@ -27,26 +28,31 @@
       </div>
     </div>
     
-
-     <div class="description">
-         <div class="img_container"><img id="planet_img" src="" alt=""></div>
-
-         <div class="geo">
-           <div class="geo_info">
-             <h1 id="planet_name">EARTH</h1>
-             <p id="content"></p>
+     <!-- // middle container -->
+    <div class="main">
+      <!-- //middle containers first div starts here -->
+      <div class="upperdiv">
+          <div class="img_container"><img id="planet_img" src="" alt=""></div>
+          <!-- //right div starts -->
+        <div class="geo">
+           <!-- // first div  -->
+             <div class="geo_info">
+                <h1 id="planet_name">EARTH</h1>
+                <p id="content"></p>
            
-             <p> Source : <a  id="wiki" href="https://en.wikipedia.org/wiki/Murcury">Wikipedia</a></p>
+                <p> Source : <a  id="wiki" href="https://en.wikipedia.org/wiki/Murcury">Wikipedia</a></p>
+             </div>
+             <!-- // second div -->
+           <div id="overviewD" class="overview active">
+             <div id="OV">01 Overview</div>
+             <div id="IS">02 Internal Structure</div>
+             <div id="SG">03 Surface Geology</div>
            </div>
-
-           <div class="overview active">
-             <div class="active"><p>01 Overview</p></div>
-             <div >02 Internal Structure</div>
-             <div >03 Surface Geology</div>
-           </div>
-
-         </div>
-
+        </div>
+        <!-- // Geo finishes here -->
+          
+     </div>
+          <!-- // middle containers second div -->
          <div class="footer">
           <div><p>Rotation Time</p> <h1 id="rotation">58.6 Days</h1></div>
           <div><p>REVOLUTION TIME</p> <h1 id="revolution">87.97 DAYS</h1></div>
@@ -54,7 +60,7 @@
           <div><p>AVERAGE TEMP.</p> <h1 id="temp"> 430°c</h1></div>
         </div>
 
-      </div>
+    </div>
 
     
 
@@ -100,9 +106,25 @@
       })
     }
 
+   let overviewDiv = document.getElementById("overviewD");
+      function changeOverview(x){
+        fetch("data.json")
+        .then(response => response.json())
+        .then(json =>{
+          switch(x) {
+            case "OV":
+              return overviewDiv.innerText = json[id].geology.content;
+              case "IS":
+                return overviewDiv.innerText = json[id].structure.content;
+                default :
+                  return overviewDiv.innerText = json[id].overview.content;
+          }
+        });
+      }
 
-    let overviewDiv = document.getElementById('button');
-    let btn = overview.getElementByClassName("btn");
+
+    let navBar = document.getElementById('button');
+    let btn = navBar.getElementByClassName("btn");
     for(let i = 0; i < btn.length; i++){
       var currrent = document.getElementByClassName('active');
       current[0].className = current[0].className.replace(' actve', '');

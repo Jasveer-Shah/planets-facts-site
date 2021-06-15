@@ -8,9 +8,13 @@
 }
 
 body {
+    padding: 0;
+    margin: 0;
     height: 100vh;
     width: 100vw;
     font-family: "Sparton";
+    display: flex;
+    background: url(".assets/background-stars.svg");
 }
 
 .container {
@@ -20,16 +24,10 @@ body {
    flex-direction: column;
    background-color: black;
    color: white;
+  
 }
 
-::-webkit-scrollbar{
-    background-color: transparent;
-    width: 10px;
-}
-::-webkit-scrollbar-thumb{
-    background-color: rgba(110, 46, 213, 0.5);
-    border-radius: 20px;
-}
+/*  */
 
 .header {
     display: flex;
@@ -37,68 +35,100 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 100px;
+    width: 100vw;
     background-color: rgb(119, 93, 60);
     box-sizing: border-box;
     padding: 30px;
 }
 
-.headerleft h2 {
+.header h2 {
+    width: 50%;
     font-weight: bold;
 }
-.headerright {
+.nav-items {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     right:20px;
-    flex: 0.6;
+    flex: 0.5;
+    text-decoration: none;
+    font-size: 13px;
     
 }
-.headerright nav-items {
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-}
 
-.geo {
+
+.main {
    display: flex;
    flex-direction: column;
    align-items: center; 
+   height: 80%;
+   width: 100vw;
+   justify-content: space-between;
+   padding:150px;
 }
-.description {
+
+.upperdiv {
     display: flex;
-    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
     align-items: center;
-    box-sizing: border-box;
-    padding: 100px;
-    height: 80%;
+    
+
 }
 
-.overview div {
-    border : 1px solid grey;
-    padding: 10px;
-    width:200px;
-}
-
-.footer {
+.img_container {
+  
     display: flex;
-    box-sizing: border-box;
-    justify-content:space-around;
-    padding: 60px;
-    bottom: 0;
+    justify-content: center;
 }
-.footer div {
-    border : 1px solid grey;
-    padding: 20px;
+.img_container img {
+    width: 500px;
+}
+
+.geo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width:30%;
+    height: 100%;
+    
 }
 
 .geo_info {
     display: flex;
     flex-direction: column;
-    width: 20%;
-    text-align: center;
-    
+    height: 50%;
+    width: 50%;
+    align-self: center;
+    justify-content: space-around;
 }
-.geo_info p {
-    text-align: center;
 
+.footer {
+    display: flex;
+    align-items: center;
+ 
+    bottom:0;
+}
+
+.footer div {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   border: 1px solid grey;
+   padding: 50px;
+   margin:100px;
+}
+
+.overview {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.overview div {
+    border: 1px solid grey;
+    width: 70%;
+    padding-top: 10px;
+    padding-bottom:10px;
 }
