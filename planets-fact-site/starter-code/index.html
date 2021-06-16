@@ -43,10 +43,10 @@
                 <p> Source : <a  id="wiki" href="https://en.wikipedia.org/wiki/Murcury">Wikipedia</a></p>
              </div>
              <!-- // second div -->
-           <div id="overviewD" class="overview active">
-             <div id="OV">01 Overview</div>
-             <div id="IS">02 Internal Structure</div>
-             <div id="SG">03 Surface Geology</div>
+           <div id="internal_pages" class="overview active">
+             <div onclick="change(this.id);activate(this)"id="overview" class="button">01 Overview</div>
+             <div onclick="change(this.id);activate(this)"id="Internal_structure" class="button">02 Internal Structure</div>
+             <div onclick="change(this.id);activate(this)"id="Surface_geology" class="button">03 Surface Geology</div>
            </div>
         </div>
         <!-- // Geo finishes here -->
@@ -106,13 +106,13 @@
       })
     }
 
-   let overviewDiv = document.getElementById("overviewD");
+   let overviewDiv = document.getElementById("internal_pages");
       function changeOverview(x){
         fetch("data.json")
         .then(response => response.json())
         .then(json =>{
           switch(x) {
-            case "OV":
+            case "SG ":
               return overviewDiv.innerText = json[id].geology.content;
               case "IS":
                 return overviewDiv.innerText = json[id].structure.content;
@@ -130,6 +130,15 @@
       current[0].className = current[0].className.replace(' actve', '');
       this.className += ' active';
     }
+
+
+    function activate(e){
+         let btns = document.getElementsByClassName('button');
+         for(let i = 0; i < btns.length; i++){
+           btns[i].classList.remove('active');
+         }
+         e.classList.add('active');
+      }
 
   </script>
 

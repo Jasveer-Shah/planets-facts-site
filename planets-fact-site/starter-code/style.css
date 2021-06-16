@@ -4,6 +4,7 @@
 *{
     margin : 0;
     padding: 0;
+    box-sizing: border-box;
 
 }
 
@@ -12,9 +13,24 @@ body {
     margin: 0;
     height: 100vh;
     width: 100vw;
-    font-family: "Sparton";
+    font-family: "Sparton", sans-serif;
     display: flex;
-    background: url(".assets/background-stars.svg");
+    position: relative;
+   
+}
+
+body ::after {
+  content: "";
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(assets/background-stars.svg);
+  background-size: cover;
+  z-index: -1;
+
+
 }
 
 .container {
@@ -29,6 +45,14 @@ body {
 
 /*  */
 
+::-webkit-scrollbar-thumb {
+    background-color: rgba(110, 46, 213, 0.5);
+    border-radius: 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Antonio', sans-serif;
+}
 .header {
     display: flex;
     flex-direction: row;
@@ -64,7 +88,10 @@ body {
    height: 80%;
    width: 100vw;
    justify-content: space-between;
-   padding:150px;
+   padding-top:100px;
+   padding-left: 150px;
+   padding-right: 150px;
+   
 }
 
 .upperdiv {
