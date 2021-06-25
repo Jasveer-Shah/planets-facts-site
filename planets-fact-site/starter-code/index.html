@@ -6,7 +6,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
   
-  <title>Frontend Mentor | Planets fact site</title>
+  <title>Planets fact site</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,14 +17,14 @@
     <div class="header">
       <h2>THE PLANETS</h2>
       <div  id="button" class="nav-items">
-        <button onclick="changeplanet(this.value)" class="nav-items btn active" value="0" href="murcury.html">MERCURY</button>
-        <button onclick="changeplanet(this.value)" class="nav-items btn" value="1" href="venus.html">VENUS</button>
-        <button onclick="changeplanet(this.value)" class="nav-items btn" value="2" href="erth.html">EARTH</button>
-        <button onclick="changeplanet(this.value)" class="nav-items btn" value="3" href="mars.html">MARS</button>
-        <button onclick="changeplanet(this.value)" class="nav-items btn" value="4" href="jupiter.html">JUPITER</button>
-        <button onclick="changeplanet(this.value)" class="nav-items btn" value="5" href="saturn.html">SATURN</button>
-        <button onclick="changeplanet(this.value)" class="nav-items btn" value="6" href="uranus.html">URANUS</button>
-        <button onclick="changeplanet(this.value)" class="nav-items btn" value="7" href="neptune.html">NEPTUNE</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn active" value="0" href="murcury.html">MERCURY</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn" value="1" href="venus.html">VENUS</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn" value="2" href="erth.html">EARTH</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn" value="3" href="mars.html">MARS</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn" value="4" href="jupiter.html">JUPITER</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn" value="5" href="saturn.html">SATURN</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn" value="6" href="uranus.html">URANUS</button>
+        <button onclick="changeplanet(this.value)" class="nav-item btn" value="7" href="neptune.html">NEPTUNE</button>
       </div>
     </div>
     
@@ -43,15 +43,14 @@
                 <p> Source : <a  id="wiki" href="https://en.wikipedia.org/wiki/Murcury">Wikipedia</a></p>
              </div>
              <!-- // second div -->
-           <div id="internal_pages" class="overview active">
-             <div onclick="change(this.id);activate(this)"id="overview" class="button">01 Overview</div>
-             <div onclick="change(this.id);activate(this)"id="Internal_structure" class="button">02 Internal Structure</div>
-             <div onclick="change(this.id);activate(this)"id="Surface_geology" class="button">03 Surface Geology</div>
+           <div id="internal_buttons" class="overview active">
+             <button onclick="changeOverview(this.id);activate(this);changeImg(this)"id="planet" class="button">01 Overview</button>
+             <button onclick="changeOverview(this.id);activate(this);changeImg(this)"id="internal" class="button">02 Internal Structure</button>
+             <button onclick="changeOverview(this.id);activate(this);changeImg(this)"id="geology" class="button">03 Surface Geology</button>
            </div>
         </div>
         <!-- // Geo finishes here -->
-          
-     </div>
+      </div> 
           <!-- // middle containers second div -->
          <div class="footer">
           <div><p>Rotation Time</p> <h1 id="rotation">58.6 Days</h1></div>
@@ -59,15 +58,12 @@
           <div><p>RADIUS</p> <h1 id="radius"> 2,439.7 KM</h1></div>
           <div><p>AVERAGE TEMP.</p> <h1 id="temp"> 430°c</h1></div>
         </div>
-
-    </div>
-
-    
-
+   </div> 
   </div>
-
+  </div>
   <script>
     let id = 0;
+    // id means iterable
     let planet = document.getElementById('planet_img');
     let title = document.getElementById('planet_name');
     let wiki = document.getElementById('wiki');
@@ -76,6 +72,8 @@
     let radius = document.getElementById('radius');
     let temp = document.getElementById('temp');
     let content = document.getElementById('content');
+    
+   
     fetch("data.json")
     .then(promise => promise.json())
     // .then(console.log);
@@ -88,9 +86,11 @@
       radius.innerText = json[id].radius;
       temp.innerText = json[id].temperature;
       content.innerText = json[id].overview.content;
+      //  still id is 0 here , so the function shows static one planet that is murcury , by default
     });
 
     function changeplanet(e){
+      // e is the current object =  this buttton that is being clicked
       id = e;
       fetch("data.json")
       .then(promise => promise.json())
@@ -106,25 +106,46 @@
       })
     }
 
-   let overviewDiv = document.getElementById("internal_pages");
+    //    change the overview infotext, image, active state when clicked on perticular button
+     
+      
       function changeOverview(x){
+        // x is here this.id     id is here from every button
         fetch("data.json")
         .then(response => response.json())
         .then(json =>{
+
           switch(x) {
-            case "SG ":
-              return overviewDiv.innerText = json[id].geology.content;
-              case "IS":
-                return overviewDiv.innerText = json[id].structure.content;
+            case "geology":
+              return content.innerText = json[id].geology.content;   // json[id]  this is global id of json that we have declared in starting of the script
+              case "internal":
+                return content.innerText = json[id].structure.content;
                 default :
-                  return overviewDiv.innerText = json[id].overview.content;
+                  return content.innerText = json[id].overview.content;
           }
         });
       }
 
+      // function changeImg(x){
+      //   // x is here this.id     id is here from every button
+      //   fetch("data.json")
+      //   .then(response => response.json())
+      //   .then(json =>{
 
+      //     switch(x) {
+      //       case "geology":
+      //         return planet.src = json[id].images.geology;   // json[id]  this is global id of json that we have declared in starting of the script
+      //         case "internal":
+      //           return planet.src = json[id].images.internal;
+      //           default :
+      //             return planet.src = json[id].images.planet;
+      //     }
+      //   });
+      // }
+     
     let navBar = document.getElementById('button');
-    let btn = navBar.getElementByClassName("btn");
+    let btn = navBar.getElementByClassName("btn");    // this btn has array of buttons now
+    // here we are looping through the btn array to each button
     for(let i = 0; i < btn.length; i++){
       var currrent = document.getElementByClassName('active');
       current[0].className = current[0].className.replace(' actve', '');
@@ -139,6 +160,21 @@
          }
          e.classList.add('active');
       }
+    
+
+    function changeImg(e) {
+      let btns = document.getElementsByClassName('button');
+        fetch('data.json')
+        .then((promise) => promise.json())
+        .then(json  => {
+          [...btns].forEach((button) => {
+            planet.src = json[id].images[e.id];
+            console.log(e);
+            console.log(planet.src);
+          });
+        })
+      }
+
 
   </script>
 
